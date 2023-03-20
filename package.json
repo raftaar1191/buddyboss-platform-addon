@@ -1,0 +1,26 @@
+{
+  "name": "buddyboss-platform-addon",
+  "title": "BuddyBoss Platform Addon",
+  "description": "Example plugin to show developers how to add their own settings into BuddyBoss Platform.",
+  "homepage": "https://github.com/woocommerce/woocommerce/wiki",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buddyboss/buddyboss-platform-addon.git"
+  },
+  "author": "BuddyBoss",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/buddyboss/buddyboss-platform-addon/issues"
+  },
+  "scripts": {
+    "build": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  
+  "keywords": [
+    "buddyboss",
+    "buddyboss-platform",
+    "buddyboss-platform-addon"
+  ]
+}
