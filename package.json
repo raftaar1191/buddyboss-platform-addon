@@ -14,10 +14,9 @@
     "url": "https://github.com/buddyboss/buddyboss-platform-addon/issues"
   },
   "scripts": {
-    "build": "echo \"Error: no test specified\" && exit 1",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "preinstall": "npx only-allow pnpm",
+		"postinstall": "pnpm git:update-hooks"
   },
-  
   "keywords": [
     "buddyboss",
     "buddyboss-platform",
