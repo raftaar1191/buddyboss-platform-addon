@@ -50,10 +50,10 @@ class BuddyBoss_Platform_Addon_BuddyBoss_Admin_Integration_Tab extends BP_Admin_
 	public function get_fields_settings() {
 
 		$fields['BuddyBoss_Platform_Addon_settings_section'] = array(
-			'BuddyBoss_Platform_Addon_field' => array(
+			'buddyboss-platform-addon-field' => array(
 				'title'             => __( 'Add-on Field', 'buddyboss-platform-addon' ),
 				'callback'          => array( $this, 'settings_callback_field' ),
-				'sanitize_callback' => 'absint',
+				'sanitize_callback' => '',
 				'args'              => array(),
 			),
 		);
