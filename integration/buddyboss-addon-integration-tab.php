@@ -13,7 +13,8 @@ defined( 'ABSPATH' ) || exit;
  *
  * @since BuddyBoss 1.0.0
  */
-class MYPLUGIN_BuddyBoss_Admin_Integration_Tab extends BP_Admin_Integration_tab {
+class BuddyBoss_Platform_Addon_BuddyBoss_Admin_Integration_Tab extends BP_Admin_Integration_tab {
+
 	public function initialize() {
 		$this->tab_order       = 60;
 	}
@@ -22,17 +23,68 @@ class MYPLUGIN_BuddyBoss_Admin_Integration_Tab extends BP_Admin_Integration_tab 
 		return true;
 	}
 
+	public function is_addon_field_enabled( $default = 1 ) {
+		return get_option( '_buddyboss_platform_addon_field', $default );
+	}
+
+	/**
+	 * Setting fields callback
+	 */
+	public function settings_callback_field() {
+		?>
+        <input name="BuddyBoss_Platform_Addon_field"
+               id="BuddyBoss_Platform_Addon_field"
+               type="checkbox"
+               value="1"
+			<?php checked( $this->is_addon_field_enabled() ); ?>
+        />
+        <label for="BuddyBoss_Platform_Addon_field">
+			<?php _e( 'Enable this option', 'buddyboss-platform-addon' ); ?>
+        </label>
+		<?php
+	}
+
+	/**
+	 * All the setting of the fields
+	 */
+	public function get_fields_settings() {
+		return array(
+			'BuddyBoss_Platform_Addon_settings_section' => array(
+				'title'             => __( 'Add-on Field', 'buddyboss-platform-addon' ),
+				'callback'          => array( $this, 'settings_callback_field' ),
+				'sanitize_callback' => 'absint',
+				'args'              => array(),
+			),
+
+		);
+	}
+
+	/**
+	 * Add new setting sections
+	 */
+	public function get_settings_sections() {
+		return array(
+			'BuddyBoss_Platform_Addon_settings_section' => array(
+				'page'  => 'bp-buddyboss-platform-addon',
+				'title' => __( 'Add-on Settings', 'buddyboss-platform-addon' ),
+			),
+		);
+	}
+
 	/**
 	 * Register setting fields
 	 */
 	public function register_fields() {
 
-		$sections = MYPLUGIN_get_settings_sections();
+		$sections = $this->get_settings_sections();
 
 		foreach ( (array) $sections as $section_id => $section ) {
 
-			// Only add section and fields if section has fields
-			$fields = MYPLUGIN_get_settings_fields_for_section( $section_id );
+			$fields_settings = $this->get_fields_settings();
+			$fields = isset( $fields_settings[ $section_id ] ) ? $fields_settings[ $section_id ] : false;
+
+			var_dump( "Tesfdsfsdfsfs" );
+			var_dump( $fields );
 
 			if ( empty( $fields ) ) {
 				continue;

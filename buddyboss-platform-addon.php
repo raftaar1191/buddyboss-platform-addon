@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: BuddyBoss Platform Add-on
+ * Plugin Name: BuddyBoss Platform Add-on main
  * Plugin URI:  https://buddyboss.com/
  * Description: Example plugin to show developers how to add their own settings into BuddyBoss Platform.
  * Author:      BuddyBoss
@@ -76,7 +76,7 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 			$this->load_plugin_textdomain();
 
 
-			add_action( 'bp_loaded', array( $this, 'bp_init' ) );
+			add_action( 'plugins_loaded', array( $this, 'bp_init' ) );
 		}
 
 		/**
@@ -125,10 +125,10 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 		 */
 		public function admin_enqueue_script() {
 
-			wp_register_script( 'buddyboss-platform-addon-admin-js', BUDDYBOSS_PLATFORM_ADDO_PLUGIN_URL . 'dist/css/backend.js', array(), $this->asset_version(), true );
+			wp_register_script( 'buddyboss-platform-addon-admin-js', BUDDYBOSS_PLATFORM_ADDON_PLUGIN_URL . 'dist/css/backend.js', array(), $this->asset_version(), true );
 			wp_enqueue_script( 'buddyboss-platform-addon-admin-js' );
 
-			wp_register_style( 'buddyboss-platform-addon-admin-css', BUDDYBOSS_PLATFORM_ADDO_PLUGIN_URL . 'dist/js/backend.css', array(), $this->asset_version(), 'all' );
+			wp_register_style( 'buddyboss-platform-addon-admin-css', BUDDYBOSS_PLATFORM_ADDON_PLUGIN_URL . 'dist/js/backend.css', array(), $this->asset_version(), 'all' );
 			wp_enqueue_style( 'buddyboss-platform-addon-admin-css' );
 		}
 
@@ -137,10 +137,10 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 		 */
 		public function enqueue_scripts() {
 
-			wp_register_script( 'buddyboss-platform-addon-frontend-js', BUDDYBOSS_PLATFORM_ADDO_PLUGIN_URL . 'dist/css/frontend.js', array(), $this->asset_version(), true );
+			wp_register_script( 'buddyboss-platform-addon-frontend-js', BUDDYBOSS_PLATFORM_ADDON_PLUGIN_URL . 'dist/css/frontend.js', array(), $this->asset_version(), true );
 			wp_enqueue_script( 'buddyboss-platform-addon-frontend-js' );
 
-			wp_register_style( 'buddyboss-platform-addon-frontend-css', BUDDYBOSS_PLATFORM_ADDO_PLUGIN_URL . 'dist/js/frontend.css', array(), $this->asset_version(), 'all' );
+			wp_register_style( 'buddyboss-platform-addon-frontend-css', BUDDYBOSS_PLATFORM_ADDON_PLUGIN_URL . 'dist/js/frontend.css', array(), $this->asset_version(), 'all' );
 			wp_enqueue_style( 'buddyboss-platform-addon-frontend-css' );
 		}
 
@@ -153,7 +153,7 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 			$args = [
 				'Version' => 'Version',
 			];
-			$meta = get_file_data( BUDDYBOSS_PLATFORM_ADDO_PLUGIN_FILE . '/foo-bar.php', $args );
+			$meta = get_file_data( BUDDYBOSS_PLATFORM_ADDON_PLUGIN_FILE . '/foo-bar.php', $args );
 
 			return isset( $meta['Version'] ) ? $meta['Version'] : time();
 		}
@@ -194,10 +194,10 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 		 * Define WCE Constants
 		 */
 		private function define_constants() {
-			$this->define( 'BUDDYBOSS_PLATFORM_ADDO_PLUGIN_FILE', __FILE__ );
-			$this->define( 'BUDDYBOSS_PLATFORM_ADDO_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
-			$this->define( 'BUDDYBOSS_PLATFORM_ADDO_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
-			$this->define( 'BUDDYBOSS_PLATFORM_ADDO_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+			$this->define( 'BUDDYBOSS_PLATFORM_ADDON_PLUGIN_FILE', __FILE__ );
+			$this->define( 'BUDDYBOSS_PLATFORM_ADDON_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
+			$this->define( 'BUDDYBOSS_PLATFORM_ADDON_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+			$this->define( 'BUDDYBOSS_PLATFORM_ADDON_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 			$this->define( 'BP_PLATFORM_VERSION_MINI_VERSION', '2.2.9.1' );
 		}
 
