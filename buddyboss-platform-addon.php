@@ -87,19 +87,108 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 			$this->define_constants();
 
 			if ( ! defined( 'BP_PLATFORM_VERSION' ) ) {
-				add_action( 'admin_notices', array( $this, 'install_bb_platform_notice' ) );
-				add_action( 'network_admin_notices', array( $this, 'install_bb_platform_notice' ) );
+
+				if ( defined( 'WP_CLI' ) ) {
+					WP_CLI::warning( $this->install_bb_platform_notice() );
+				} else {
+					add_action( 'admin_notices', array( $this, 'install_bb_platform_notice' ) );
+					add_action( 'network_admin_notices', array( $this, 'install_bb_platform_notice' ) );
+				}
 				return;
 			}
 
 			if ( empty( $this->platform_is_active() ) ) {
-				add_action( 'admin_notices', array( $this, 'update_bb_platform_notice' ) );
-				add_action( 'network_admin_notices', array( $this, 'update_bb_platform_notice' ) );
+				if ( defined( 'WP_CLI' ) ) {
+					WP_CLI::warning( $this->update_bb_platform_notice() );
+				} else {
+					add_action( 'admin_notices', array( $this, 'update_bb_platform_notice' ) );
+					add_action( 'network_admin_notices', array( $this, 'update_bb_platform_notice' ) );
+				}
 				return;
 			}
 
 			$this->includes();
+			$this->scripts();
 		}
+
+		/**
+		 * Load the script in the frountend and the backend
+		 */
+		public function scripts() {
+			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_script' ) );
+
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		}
+
+		/**
+		 * Load the script into the backend
+		 */
+		public function admin_enqueue_script() {
+
+			wp_register_script( 'buddyboss-platform-addon-admin-js', BUDDYBOSS_PLATFORM_ADDO_PLUGIN_URL . 'dist/css/backend.js', array(), $this->asset_version(), true );
+			wp_enqueue_script( 'buddyboss-platform-addon-admin-js' );
+
+			wp_register_style( 'buddyboss-platform-addon-admin-css', BUDDYBOSS_PLATFORM_ADDO_PLUGIN_URL . 'dist/js/backend.css', array(), $this->asset_version(), 'all' );
+			wp_enqueue_style( 'buddyboss-platform-addon-admin-css' );
+		}
+
+		/**
+		 * Load the script into the frontend
+		 */
+		public function enqueue_scripts() {
+
+			wp_register_script( 'buddyboss-platform-addon-frontend-js', BUDDYBOSS_PLATFORM_ADDO_PLUGIN_URL . 'dist/css/frontend.js', array(), $this->asset_version(), true );
+			wp_enqueue_script( 'buddyboss-platform-addon-frontend-js' );
+
+			wp_register_style( 'buddyboss-platform-addon-frontend-css', BUDDYBOSS_PLATFORM_ADDO_PLUGIN_URL . 'dist/js/frontend.css', array(), $this->asset_version(), 'all' );
+			wp_enqueue_style( 'buddyboss-platform-addon-frontend-css' );
+		}
+
+		/**
+		 * Return the current version of the plugin.
+		 *
+		 * @return mixed
+		 */
+		public function version() {
+			$args = [
+				'Version' => 'Version',
+			];
+			$meta = get_file_data( BUDDYBOSS_PLATFORM_ADDO_PLUGIN_FILE . '/foo-bar.php', $args );
+
+			return isset( $meta['Version'] ) ? $meta['Version'] : time();
+		}
+
+		/**
+		 * Sync the plugin version with the asset version.
+		 *
+		 * @return string
+		 */
+		public function asset_version() {
+			if ( $this->is_debug() || $this->is_script_debug() ) {
+				return time();
+			}
+
+			return $this->version();
+		}
+
+		/**
+		 * Is WP debug mode enabled.
+		 *
+		 * @return boolean
+		 */
+		public function is_debug() {
+			return ( defined( '\WP_DEBUG' ) && \WP_DEBUG );
+		}
+
+		/**
+		 * Is WP script debug mode enabled.
+		 *
+		 * @return boolean
+		 */
+		public function is_script_debug() {
+			return ( defined( '\SCRIPT_DEBUG' ) && \SCRIPT_DEBUG );
+		}
+
 
 		/**
 		 * Define WCE Constants
@@ -160,15 +249,21 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 			load_plugin_textdomain( 'buddyboss-platform-addon', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
 		}
 
+		/**
+		 * Disable the plugin load and show the notices to the admin
+		 */
 		public function install_bb_platform_notice() {
 			echo '<div class="error fade"><p>';
 			_e('<strong>BuddyBoss Platform Add-on</strong></a> requires the BuddyBoss Platform plugin to work. Please <a href="https://buddyboss.com/platform/" target="_blank">install BuddyBoss Platform</a> first.', 'buddyboss-platform-addon');
 			echo '</p></div>';
 		}
 	
+		/**
+		 * Disable the plugin load and show the notices to the admin
+		 */
 		public function update_bb_platform_notice() {
 			echo '<div class="error fade"><p>';
-			_e('<strong>BuddyBoss Platform Add-on</strong></a> requires BuddyBoss Platform plugin version 1.2.6 or higher to work. Please update BuddyBoss Platform.', 'buddyboss-platform-addon');
+			printf( __('<strong>BuddyBoss Platform Add-on</strong></a> requires BuddyBoss Platform plugin version %s or higher to work. Please update BuddyBoss Platform.', 'buddyboss-platform-addon'), BP_PLATFORM_VERSION_MINI_VERSION );
 			echo '</p></div>';
 		}
 

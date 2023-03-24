@@ -2,13 +2,6 @@
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
 
-if ( ! function_exists( 'MYPLUGIN_admin_enqueue_script' ) ) {
-	function MYPLUGIN_admin_enqueue_script() {
-		wp_enqueue_style( 'buddyboss-addon-admin-css', plugin_dir_url( __FILE__ ) . 'style.css' );
-	}
-
-	add_action( 'admin_enqueue_scripts', 'MYPLUGIN_admin_enqueue_script' );
-}
 
 if ( ! function_exists( 'MYPLUGIN_get_settings_sections' ) ) {
 	function MYPLUGIN_get_settings_sections() {
