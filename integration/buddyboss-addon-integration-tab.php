@@ -51,7 +51,7 @@ class BuddyBoss_Platform_Addon_BuddyBoss_Admin_Integration_Tab extends BP_Admin_
 
 		$fields['BuddyBoss_Platform_Addon_settings_section'] = array(
 			'buddyboss-platform-addon-field' => array(
-				'title'             => __( 'Add-on Field', 'buddyboss-platform-addon' ),
+				'title'             => __( 'Addon Field', 'buddyboss-platform-addon' ),
 				'callback'          => array( $this, 'settings_callback_field' ),
 				'sanitize_callback' => '',
 				'args'              => array(),
@@ -68,7 +68,7 @@ class BuddyBoss_Platform_Addon_BuddyBoss_Admin_Integration_Tab extends BP_Admin_
 		return array(
 			'BuddyBoss_Platform_Addon_settings_section' => array(
 				'page'  => 'bp-buddyboss-platform-addon',
-				'title' => __( 'Add-on Settings', 'buddyboss-platform-addon' ),
+				'title' => __( 'Addon Settings', 'buddyboss-platform-addon' ),
 			),
 		);
 	}

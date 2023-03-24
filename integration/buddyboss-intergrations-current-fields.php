@@ -34,7 +34,7 @@ class BuddyBoss_Platform_Addon_BuddyBoss_Integration_Current_Fields{
 
     public function admin_setting_general_register_fields( $setting ) {
         // Main General Settings Section
-	    $setting->add_section( 'BuddyBoss_Platform_Addon_addon', __( 'Add-on Settings', 'buddyboss-platform-addon' ) );
+	    $setting->add_section( 'BuddyBoss_Platform_Addon_addon', __( 'Addon Settings', 'buddyboss-platform-addon' ) );
 
 	    $args          = array();
 	    $setting->add_field( 'buddyboss-platform-addon-enable-my-addon', __( 'My Field', 'buddyboss-platform-addon' ), array( $this, 'admin_general_setting_callback' ), 'intval', $args );

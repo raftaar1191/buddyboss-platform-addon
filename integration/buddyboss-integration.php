@@ -18,7 +18,7 @@ class BuddyBoss_Platform_Addon_BuddyBoss_Integration extends BP_Integration {
 	public function __construct() {
 		$this->start(
 			'buddyboss-platform-addon',
-			__( 'Add-on', 'buddyboss-platform-addon' ),
+			__( 'Addon', 'buddyboss-platform-addon' ),
 			'buddyboss-platform-addon',
 			array(
 				'required_plugin' => array(),

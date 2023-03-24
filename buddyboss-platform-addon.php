@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: BuddyBoss Platform Add-on
+ * Plugin Name: BuddyBoss Platform Addon
  * Plugin URI:  https://buddyboss.com/
  * Description: Example plugin to show developers how to add their own settings into BuddyBoss Platform.
  * Author:      BuddyBoss
@@ -257,7 +257,7 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 		 */
 		public function install_bb_platform_notice() {
 			echo '<div class="error fade"><p>';
-			_e('<strong>BuddyBoss Platform Add-on</strong></a> requires the BuddyBoss Platform plugin to work. Please <a href="https://buddyboss.com/platform/" target="_blank">install BuddyBoss Platform</a> first.', 'buddyboss-platform-addon');
+			_e('<strong>BuddyBoss Platform Addon</strong></a> requires the BuddyBoss Platform plugin to work. Please <a href="https://buddyboss.com/platform/" target="_blank">install BuddyBoss Platform</a> first.', 'buddyboss-platform-addon');
 			echo '</p></div>';
 		}
 	
@@ -266,7 +266,7 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 		 */
 		public function update_bb_platform_notice() {
 			echo '<div class="error fade"><p>';
-			printf( __('<strong>BuddyBoss Platform Add-on</strong></a> requires BuddyBoss Platform plugin version %s or higher to work. Please update BuddyBoss Platform.', 'buddyboss-platform-addon'), BP_PLATFORM_VERSION_MINI_VERSION );
+			printf( __('<strong>BuddyBoss Platform Addon</strong></a> requires BuddyBoss Platform plugin version %s or higher to work. Please update BuddyBoss Platform.', 'buddyboss-platform-addon'), BP_PLATFORM_VERSION_MINI_VERSION );
 			echo '</p></div>';
 		}
 
