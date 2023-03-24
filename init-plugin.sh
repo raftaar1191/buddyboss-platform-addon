@@ -41,7 +41,7 @@ fi
 
 slug="$( echo "$name" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' )"
 prefix="$( echo "$name" | tr '[:upper:]' '[:lower:]' | sed 's/ /_/g' )"
-namespace="$( echo "$name" | sed 's/ /_/g' )"
+namespace="$( echo "$name" | tr '[:lower:]' '[:upper:]' | sed 's/ /_/g' )"
 class="$( echo "$name" | sed 's/ /_/g' )"
 repo="$slug"
 
