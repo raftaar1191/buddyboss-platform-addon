@@ -156,7 +156,7 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 			$args = [
 				'Version' => 'Version',
 			];
-			$meta = get_file_data( BUDDYBOSS_PLATFORM_ADDON_PLUGIN_FILE . '/foo-bar.php', $args );
+			$meta = get_file_data( BUDDYBOSS_PLATFORM_ADDON_PLUGIN_FILE . '/buddyboss-platform-addon.php', $args );
 
 			return isset( $meta['Version'] ) ? $meta['Version'] : time();
 		}
@@ -287,21 +287,21 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 }
 
 
-if ( ! function_exists( 'buddyBoss_platform_addon' ) ) {
+if ( ! function_exists( 'buddyboss_platform_addon' ) ) {
 	/**
 	 * Returns the main instance of BuddyBoss_Platform_Addon to prevent the need to use globals.
 	 *
 	 * @since  1.0.0
 	 * @return BuddyBoss_Platform_Addon
 	 */
-	function buddyBoss_platform_addon() {
+	function buddyboss_platform_addon() {
 		return BuddyBoss_Platform_Addon::instance();
 	}
 
 	/**
 	 * Call the main function to load the plugin
 	 */
-	buddyBoss_platform_addon();
+	buddyboss_platform_addon();
 }
 
 

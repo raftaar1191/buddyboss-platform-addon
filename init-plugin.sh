@@ -41,7 +41,7 @@ fi
 
 slug="$( echo "$name" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' )"
 prefix="$( echo "$name" | tr '[:upper:]' '[:lower:]' | sed 's/ /_/g' )"
-namespace="$( echo "$name" | sed 's/ //g' )"
+namespace="$( echo "$name" | sed 's/ /_/g' )"
 class="$( echo "$name" | sed 's/ /_/g' )"
 repo="$slug"
 
@@ -117,8 +117,8 @@ git grep -lz "buddyboss-platform-addon" | xargs -0 sed -i '' -e "s/buddyboss-pla
 git grep -lz "BuddyBoss Platform Addon" | xargs -0 sed -i '' -e "s/BuddyBoss Platform Addon/$name/g"
 git grep -lz "buddyboss-platform-addon" | xargs -0 sed -i '' -e "s/buddyboss-platform-addon/$slug/g"
 git grep -lz "buddyboss_platform_addon" | xargs -0 sed -i '' -e "s/buddyboss_platform_addon/$prefix/g"
-git grep -lz "BuddybossPlatformAddon" | xargs -0 sed -i '' -e "s/BuddybossPlatformAddon/$namespace/g"
-git grep -lz "Buddyboss_Platform_Addon" | xargs -0 sed -i '' -e "s/Buddyboss_Platform_Addon/$class/g"
+git grep -lz "BUDDYBOSS_PLATFORM_ADDON" | xargs -0 sed -i '' -e "s/BUDDYBOSS_PLATFORM_ADDON/$namespace/g"
+git grep -lz "BuddyBoss_Platform_Addon" | xargs -0 sed -i '' -e "s/BuddyBoss_Platform_Addon/$class/g"
 
 # Clean slate.
 rm -rf .git
