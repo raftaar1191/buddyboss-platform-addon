@@ -37,10 +37,10 @@ class BuddyBoss_Platform_Addon_BuddyBoss_Integration_Current_Fields{
 	    $setting->add_section( 'BuddyBoss_Platform_Addon_addon', __( 'Add-on Settings', 'buddyboss-platform-addon' ) );
 
 	    $args          = array();
-	    $setting->add_field( 'buddyboss-platform-addon-enable-my-addon', __( 'My Field', 'buddyboss-platform-addon' ), array( $this, 'admin_general_setting_callback_my_addon' ), 'intval', $args );
+	    $setting->add_field( 'buddyboss-platform-addon-enable-my-addon', __( 'My Field', 'buddyboss-platform-addon' ), array( $this, 'admin_general_setting_callback' ), 'intval', $args );
     }
 
-    public function admin_general_setting_callback_my_addon() {
+    public function admin_general_setting_callback() {
 		?>
         <input id="buddyboss-platform-addon-enable-my-addon" name="buddyboss-platform-addon-enable-my-addon" type="checkbox"
                value="1" <?php checked( $this->is_addon_field_enabled() ); ?> />
