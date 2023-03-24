@@ -43,12 +43,11 @@ slug="$( echo "$name" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' )"
 prefix="$( echo "$name" | tr '[:upper:]' '[:lower:]' | sed 's/ /_/g' )"
 namespace="$( echo "$name" | sed 's/ //g' )"
 class="$( echo "$name" | sed 's/ /_/g' )"
-
-="$slug"
+repo="$slug"
 
 echo
 echo "The Organization name will be converted to lowercase for use in the repository "
-echo "path (i.e. BuddyBoss becomes buddyboss)."
+echo "path (i.e. AcrossWP becomes acrosswp)."
 echo -n "Enter your GitHub organization name, and press [ENTER]: "
 read org
 
@@ -70,15 +69,15 @@ else
 	repo="bb-${slug}"
 fi
 
-# echo
-# echo -n "Do you want to make the initial commit? [Y/N]: "
-# read commit
+echo
+echo -n "Do you want to make the initial commit? [Y/N]: "
+read commit
 
-# if [[ "$commit" == Y ]] || [[ "$commit" == y ]]; then
-# 	echo
-# 	echo -n "Do you want to push the plugin to your GitHub repository? [Y/N]: "
-# 	read push
-# fi
+if [[ "$commit" == Y ]] || [[ "$commit" == y ]]; then
+	echo
+	echo -n "Do you want to push the plugin to your GitHub repository? [Y/N]: "
+	read push
+fi
 
 echo
 echo -n "Do you want to install the dependencies in the new plugin? [Y/N]: "
@@ -110,15 +109,16 @@ git clone "$src_repo_path" "$repo"
 cd "$repo"
 
 git mv buddyboss-platform-addon.php "$slug.php"
+# git mv tests/phpunit/class-test-foo-bar.php "tests/phpunit/class-test-$slug.php"
 
-git grep -lz "buddyboss%2Fbuddyboss-platform-addon" | xargs -0 sed -i '' -e "s|push%2Fbuddyboss-platform-addon|$org_lower%2F$repo|g"
-git grep -lz "push/buddyboss-platform-addon" | xargs -0 sed -i '' -e "s|push/buddyboss-platform-addon|$org_lower/$repo|g"
+git grep -lz "raftaar1191%2Fbuddyboss-platform-addon" | xargs -0 sed -i '' -e "s|raftaar1191%2Fbuddyboss-platform-addon|$org_lower%2F$repo|g"
+git grep -lz "raftaar1191/buddyboss-platform-addon" | xargs -0 sed -i '' -e "s|raftaar1191/buddyboss-platform-addon|$org_lower/$repo|g"
 git grep -lz "buddyboss-platform-addon" | xargs -0 sed -i '' -e "s/buddyboss-platform-addon/$repo/g"
-git grep -lz "BuddyBoss Platform Add-on" | xargs -0 sed -i '' -e "s/Foo Bar/$name/g"
+git grep -lz "BuddyBoss Platform Add-on" | xargs -0 sed -i '' -e "s/BuddyBoss Platform Add-on/$name/g"
 git grep -lz "buddyboss-platform-addon" | xargs -0 sed -i '' -e "s/buddyboss-platform-addon/$slug/g"
 git grep -lz "buddyboss_platform_addon" | xargs -0 sed -i '' -e "s/buddyboss_platform_addon/$prefix/g"
-git grep -lz "BuddyBossPlatformAddon" | xargs -0 sed -i '' -e "s/BuddyBossPlatformAddon/$namespace/g"
-git grep -lz "BuddyBoss_Platform_Addon" | xargs -0 sed -i '' -e "s/BuddyBoss_Platform_Addon/$class/g"
+git grep -lz "BuddybossPlatformAddon" | xargs -0 sed -i '' -e "s/BuddybossPlatformAddon/$namespace/g"
+git grep -lz "Buddyboss_Platform_Addon" | xargs -0 sed -i '' -e "s/Buddyboss_Platform_Addon/$class/g"
 
 # Clean slate.
 rm -rf .git
@@ -136,6 +136,23 @@ git remote add origin "git@github.com:$org_lower/$repo.git"
 # Install dependencies.
 if [[ "$deps" == Y ]] || [[ "$deps" == y ]]; then
 	npm install
+fi
+
+# Commit and push change.
+if [[ "$commit" == Y ]] || [[ "$commit" == y ]]; then
+	git commit -m "Initial commit"
+
+	if [[ "$push" == Y ]] || [[ "$push" == y ]]; then
+    	git push -u origin master
+    else
+    	echo
+    	echo "Push changes to GitHub with the following command:"
+    	echo "cd $(pwd) && git push -u origin master"
+    fi
+else
+    echo
+    echo "Commit and push changes to GitHub with the following command:"
+    echo "cd $(pwd) && git commit -m \"Initial commit\" && git push -u origin master"
 fi
 
 echo

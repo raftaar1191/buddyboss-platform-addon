@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: BuddyBoss Platform Add-on main
+ * Plugin Name: BuddyBoss Platform Add-on
  * Plugin URI:  https://buddyboss.com/
  * Description: Example plugin to show developers how to add their own settings into BuddyBoss Platform.
  * Author:      BuddyBoss
