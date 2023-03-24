@@ -86,6 +86,9 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 
 			$this->define_constants();
 
+			/**
+			 * For BuddyBoss Platform
+			 */
 			if ( ! defined( 'BP_PLATFORM_VERSION' ) ) {
 
 				if ( defined( 'WP_CLI' ) ) {
