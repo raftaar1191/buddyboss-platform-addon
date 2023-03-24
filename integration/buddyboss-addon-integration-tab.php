@@ -24,7 +24,7 @@ class BuddyBoss_Platform_Addon_BuddyBoss_Admin_Integration_Tab extends BP_Admin_
 	}
 
 	public function is_addon_field_enabled( $default = 1 ) {
-		return get_option( '_buddyboss_platform_addon_field', $default );
+		return get_option( 'buddyboss-platform-addon-field', $default );
 	}
 
 	/**
@@ -32,13 +32,13 @@ class BuddyBoss_Platform_Addon_BuddyBoss_Admin_Integration_Tab extends BP_Admin_
 	 */
 	public function settings_callback_field() {
 		?>
-        <input name="BuddyBoss_Platform_Addon_field"
-               id="BuddyBoss_Platform_Addon_field"
+        <input name="buddyboss-platform-addon-field"
+               id="buddyboss-platform-addon-field"
                type="checkbox"
                value="1"
 			<?php checked( $this->is_addon_field_enabled() ); ?>
         />
-        <label for="BuddyBoss_Platform_Addon_field">
+        <label for="buddyboss-platform-addon-field">
 			<?php _e( 'Enable this option', 'buddyboss-platform-addon' ); ?>
         </label>
 		<?php
@@ -48,15 +48,17 @@ class BuddyBoss_Platform_Addon_BuddyBoss_Admin_Integration_Tab extends BP_Admin_
 	 * All the setting of the fields
 	 */
 	public function get_fields_settings() {
-		return array(
-			'BuddyBoss_Platform_Addon_settings_section' => array(
+
+		$fields['BuddyBoss_Platform_Addon_settings_section'] = array(
+			'BuddyBoss_Platform_Addon_field' => array(
 				'title'             => __( 'Add-on Field', 'buddyboss-platform-addon' ),
 				'callback'          => array( $this, 'settings_callback_field' ),
 				'sanitize_callback' => 'absint',
 				'args'              => array(),
 			),
-
 		);
+
+		return $fields;
 	}
 
 	/**
@@ -82,9 +84,6 @@ class BuddyBoss_Platform_Addon_BuddyBoss_Admin_Integration_Tab extends BP_Admin_
 
 			$fields_settings = $this->get_fields_settings();
 			$fields = isset( $fields_settings[ $section_id ] ) ? $fields_settings[ $section_id ] : false;
-
-			var_dump( "Tesfdsfsdfsfs" );
-			var_dump( $fields );
 
 			if ( empty( $fields ) ) {
 				continue;
