@@ -72,10 +72,19 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 		 */
 		public function __construct() {
 
-			$this->define_constants();
-
 			// Set up localisation.
 			$this->load_plugin_textdomain();
+
+
+			add_action( 'bp_loaded', array( $this, 'bp_init' ) );
+		}
+
+		/**
+		 * Load this function when the BuddyBoss Platform Plugin is loaded
+		 */
+		public function bp_init() {
+
+			$this->define_constants();
 
 			if ( ! defined( 'BP_PLATFORM_VERSION' ) ) {
 				add_action( 'admin_notices', array( $this, 'install_bb_platform_notice' ) );
@@ -83,7 +92,7 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 				return;
 			}
 
-			if ( $this->platform_is_active() ) {
+			if ( empty( $this->platform_is_active() ) ) {
 				add_action( 'admin_notices', array( $this, 'update_bb_platform_notice' ) );
 				add_action( 'network_admin_notices', array( $this, 'update_bb_platform_notice' ) );
 				return;
@@ -169,6 +178,7 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 		 * 
 		 * return Bool True if the Platform is active and has the mini version requre or else false
 		 */
+
 		public function platform_is_active() {
 			if ( defined( 'BP_PLATFORM_VERSION' ) && version_compare( BP_PLATFORM_VERSION, BP_PLATFORM_VERSION_MINI_VERSION , '>=' ) ) {
 				return true;
