@@ -5,19 +5,14 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 var custom_module = {
-  // TODO: Add common Configuration
+  plugins: [new MiniCssExtractPlugin()],
   module: {
     rules: [
-			{
-				test: /\.css$/,
-				use: [
-					// prettier-ignore
-					MiniCssExtractPlugin.loader,
-          'sass-loader',
-					'css-loader',
-				],
-			},
-		],
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+    ],
   },
 };
 
@@ -56,7 +51,7 @@ var frontend_script = Object.assign({}, script_output, {
 var backend_style = Object.assign({}, custom_module, style_output,{
   entry: {
       'backend-style': [
-        './assets/src/backend/css/index.css'
+        './assets/src/backend/css/index.js'
       ],
   },
 });
@@ -64,7 +59,7 @@ var backend_style = Object.assign({}, custom_module, style_output,{
 var frontend_style = Object.assign({}, custom_module, style_output, {
   entry: {
       'frontend-style': [
-        './assets/src/frontend/css/index.css'
+        './assets/src/frontend/css/index.js'
       ],
   },
 });
