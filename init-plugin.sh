@@ -116,7 +116,7 @@ git grep -lz "raftaar1191%2Fbuddyboss-platform-addon" | xargs -0 sed -i '' -e "s
 git grep -lz "raftaar1191/buddyboss-platform-addon" | xargs -0 sed -i '' -e "s|raftaar1191/buddyboss-platform-addon|$org_lower/$repo|g"
 git grep -lz "buddyboss-platform-addon" | xargs -0 sed -i '' -e "s/buddyboss-platform-addon/$repo/g"
 git grep -lz "BuddyBoss Platform Addon" | xargs -0 sed -i '' -e "s/BuddyBoss Platform Addon/$name/g"
-git grep -lz "BuddyBoss " | xargs -0 sed -i '' -e "s/BuddyBoss /$class /g"
+git grep -lz "since BuddyBoss" | xargs -0 sed -i '' -e "s/since BuddyBoss/since $class /g"
 git grep -lz "buddyboss-platform-addon" | xargs -0 sed -i '' -e "s/buddyboss-platform-addon/$slug/g"
 git grep -lz "buddyboss_platform_addon" | xargs -0 sed -i '' -e "s/buddyboss_platform_addon/$prefix/g"
 git grep -lz "BUDDYBOSS_PLATFORM_ADDON" | xargs -0 sed -i '' -e "s/BUDDYBOSS_PLATFORM_ADDON/$define/g"

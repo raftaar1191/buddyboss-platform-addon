@@ -25,13 +25,13 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 	 * Main MYPlugin Custom Emails Class
 	 *
 	 * @class BuddyBoss_Platform_Addon
-	 * @version	1.0.0
+	 * @version	BuddyBoss 1.0.0
 	 */
 	final class BuddyBoss_Platform_Addon {
 
 		/**
 		 * @var BuddyBoss_Platform_Addon The single instance of the class
-		 * @since 1.0.0
+		 * @since BuddyBoss 1.0.0
 		 */
 		protected static $_instance = null;
 
@@ -40,7 +40,7 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 		 *
 		 * Ensures only one instance of BuddyBoss_Platform_Addon is loaded or can be loaded.
 		 *
-		 * @since 1.0.0
+		 * @since BuddyBoss 1.0.0
 		 * @static
 		 * @see BuddyBoss_Platform_Addon()
 		 * @return BuddyBoss_Platform_Addon - Main instance
@@ -54,14 +54,14 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 
 		/**
 		 * Cloning is forbidden.
-		 * @since 1.0.0
+		 * @since BuddyBoss 1.0.0
 		 */
 		public function __clone() {
 			_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'buddyboss-platform-addon' ), '1.0.0' );
 		}
 		/**
 		 * Unserializing instances of this class is forbidden.
-		 * @since 1.0.0
+		 * @since BuddyBoss 1.0.0
 		 */
 		public function __wakeup() {
 			_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'buddyboss-platform-addon' ), '1.0.0' );
