@@ -1,0 +1,19 @@
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ([
+/* 0 */
+/***/ (() => {
+
+throw new Error("Module build failed (from ./node_modules/.pnpm/mini-css-extract-plugin@2.7.5_webpack@5.76.3/node_modules/mini-css-extract-plugin/dist/loader.js):\nError: You forgot to add 'mini-css-extract-plugin' plugin (i.e. `{ plugins: [new MiniCssExtractPlugin()] }`), please read https://github.com/webpack-contrib/mini-css-extract-plugin#getting-started\n    at Object.pitch (/Users/raftaar1191/Local Sites/buddyboss-theme/app/public/wp-content/plugins/buddyboss-platform-addon/node_modules/.pnpm/mini-css-extract-plugin@2.7.5_webpack@5.76.3/node_modules/mini-css-extract-plugin/dist/loader.js:72:14)");
+
+/***/ })
+/******/ 	]);
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__[0]();
+/******/ 	
+/******/ })()
+;
