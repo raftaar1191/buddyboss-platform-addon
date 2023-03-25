@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
 if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 
 	/**
-	 * Main MYPlugin Custom Emails Class
+	 * Main BuddyBoss_Platform_Addon Class
 	 *
 	 * @class BuddyBoss_Platform_Addon
 	 * @version	BuddyBoss 1.0.0
