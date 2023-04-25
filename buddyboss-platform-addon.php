@@ -75,7 +75,6 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 			// Set up localisation.
 			$this->load_plugin_textdomain();
 
-
 			add_action( 'plugins_loaded', array( $this, 'bp_init' ) );
 		}
 
@@ -219,7 +218,7 @@ if ( ! class_exists( 'BuddyBoss_Platform_Addon' ) ) {
 		 * Include required core files used in admin and on the frontend.
 		 */
 		public function includes() {
-			include_once( 'functions.php' );
+			include_once( BUDDYBOSS_PLATFORM_ADDON_PLUGIN_PATH . 'functions.php' );
 		}
 
 		/**
